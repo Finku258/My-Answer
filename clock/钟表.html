@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .clock {
+            width: 600px;
+            height: 600px;
+            background: url(img/FlameRing5.gif) no-repeat;
+            position:absolute;
+            float: left;
+        }
+            
+        
+        .h {
+            clear: both;
+            position: relative;
+            background: url(img/时针.png) no-repeat center center;
+            height: 150px;
+            top: 130px;
+            left: -100px;
+            z-index: -2;
+        }
+        .m {
+            position: relative;
+            background: url(img/分针.png) no-repeat center center;
+            height: 300px;
+            top: -93px;
+            left: -100px;
+            z-index: -1;
+        }
+        .s {
+            position: relative;
+            background: url(img/秒针.gif) no-repeat center center;
+            height: 500px;
+            top: -480px;
+            left: -100px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="clock">
+    <div class="h" id="hour"></div>
+    <div class="m" id="minute"></div>
+    <div class="s" id="second"></div>
+</div>
+<script>
+    var hour = document.getElementById("hour");
+    var minute = document.getElementById("minute");
+    var second = document.getElementById("second");
+     var s = 0,m = 0, h = 0, ms = 0;
+      setInterval(function() {
+          var date = new Date();  
+          ms = date.getMilliseconds();
+          s = date.getSeconds() + ms / 1000;
+          m = date.getMinutes() + s / 60;
+          h = date.getHours() % 12 + m / 60 ;
+          second.style.transform = "rotate("+ s*6 +"deg)";
+          minute.style.transform = "rotate("+ m*6 +"deg)";
+          hour.style.transform = "rotate("+ h*30 +"deg)";
+      },100);
+  </script>
+</body>
+</html>
